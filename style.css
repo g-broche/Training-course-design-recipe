@@ -12,7 +12,8 @@
     --font-family-headings: "Young Serif";
     --font-family-normal: "Outfit";
 
-    --page-vertical-padding-desktop: 5rem;
+    --page-padding-desktop: 5rem 0px;
+    --content-padding-mobile: 2rem;
     --content-padding: 2rem;
     --spacing-unit-content: 1.5rem;
 
@@ -63,19 +64,22 @@ hr{
     color: var(--color-stone-900);
 }
 
-ul{
-    margin-left: var(--spacing-unit-content);
+ul.dot-marker-list li{
+    margin-left: calc( var(--spacing-unit-content) * .4);
 }
 
-ul li span, ul li p{
+ul:not(.dot-marker-list) li{
+    margin-left: calc( var(--spacing-unit-content) * 1);
+}
+
+ul.dot-marker-list li p{
+    margin-left: calc( var(--spacing-unit-content) * 1);
+}
+
+ul:not(.dot-marker-list) li p{
     margin-left: calc( var(--spacing-unit-content) * .75);
 }
 
-section{
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-unit-content);
-}
 
 section ul{
     display: flex;
@@ -83,12 +87,30 @@ section ul{
     gap: calc( var(--spacing-unit-content) * .5);
 }
 
-section h2, section:not(#recipe-time) li::marker{
-    color: var(--color-brown-800);
+.dot-marker-list li{
+    display:flex;
+    align-items: center;
+    list-style: none;
 }
 
+.dot-marker-list li:before{
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+section:not(#recipe-time) .dot-marker-list li:before{
+    background-color: var(--color-brown-800);
+}
+
+section#recipe-time .dot-marker-list li:before{
+    background-color: var(--color-rose-800);
+}
+
+
 body{
-    padding: var(--page-vertical-padding-desktop) 0px;
+    padding: var(--page-padding-desktop);
     width: 100vw;
     min-height: 100vh;
     background-color: var(--color-stone-100);
@@ -100,6 +122,16 @@ body{
     padding: var(--content-padding);
     width:50%;
     background-color: var(--color-white);
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-unit-content);
+}
+
+section h2{
+    color: var(--color-brown-800);
 }
 
 .content-flex-col{
@@ -116,6 +148,7 @@ body{
     border-radius: var(--border-radius-m);
     object-fit: cover;
     width:100%;
+    display: block;
 }
 
 section#recipe-time{
@@ -129,15 +162,13 @@ section#recipe-time .grid-title strong{
     color: var(--color-rose-800);
 }
 
-section#recipe-time ul li::marker{
-    color: var(--color-rose-800);
-}
-
 section#instructions ul{
     list-style: decimal;
 }
+
 section#instructions li::marker{
     font-weight: bold;
+    color: var(--color-brown-800);
 }
 
 div#nutrition-data{
@@ -160,6 +191,28 @@ div#nutrition-data{
 div#nutrition-data hr{
     grid-column: span 2;
     height: 1px;
+}
+
+@media only screen and (max-width: 400px){
+    h1{
+        font-size: calc( var(--font-size-base) * 2.25 );
+        line-height: calc( var(--font-size-base) * 2.25 );
+    }
+    body{
+        padding: 0;
+    }
+    #content-wrapper{
+        padding: 0;
+        width:100%;
+        gap:0;
+    }
+    main{
+        padding: var(--content-padding-mobile)
+    }
+
+    .image-wrapper img{
+        border-radius: 0;
+    }
 }
 
 
