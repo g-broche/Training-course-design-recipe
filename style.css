@@ -13,6 +13,7 @@
     --font-family-normal: "Outfit";
 
     --page-padding-desktop: 5rem 0px;
+    --page-padding-laptop: 2rem 0px;
     --content-padding-mobile: 2rem;
     --content-padding: 2rem;
     --spacing-unit-content: 1.5rem;
@@ -95,8 +96,10 @@ section ul{
 
 .dot-marker-list li:before{
     content: "";
-    width: 7px;
-    height: 7px;
+    min-width: 5px;
+    min-height: 5px;
+    max-width: 5px;
+    max-height: 5px;
     border-radius: 50%;
 }
 
@@ -175,7 +178,8 @@ div#nutrition-data{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1px auto 1px auto 1px;
-    gap:1rem
+    gap:1rem;
+    align-items:center;
 }
 
 .cell-nutrition-macro{
@@ -193,7 +197,16 @@ div#nutrition-data hr{
     height: 1px;
 }
 
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 1024px){
+    body{
+        padding: var(--page-padding-laptop);
+    }
+    #content-wrapper{
+        width:80%;
+    }
+}
+
+@media only screen and (max-width: 550px){
     h1{
         font-size: calc( var(--font-size-base) * 2.25 );
         line-height: calc( var(--font-size-base) * 2.25 );
